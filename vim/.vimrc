@@ -1,5 +1,5 @@
-" oOPHINOo  VIMRC
-"
+" oOPHINOo - vimrc
+
 set nocompatible
 filetype off
 
@@ -9,9 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'pangloss/vim-javascript'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/es.next.syntax.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -36,6 +34,7 @@ Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'trotzig/import-js'
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 filetype plugin indent on
@@ -45,7 +44,7 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set t_Co=256  " enable 256 colours
-colorscheme solarized
+colorscheme evening
 
 
 " Spaces
@@ -160,6 +159,49 @@ let NERDTreeShowHidden=1
 let NERDTreeCaseSensitiveSort=1
 let NERDTreeIgnore=['\.DS_Store$', '\~$', '\.sw[poq]$']
 
+" Set File Icons
+" set guifont=Meslo\ LG\ L\ Regular\ for\ Powerline\ 12
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\
+set encoding=utf-8
+let g:airline_powerline_fonts = 1
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+" Templating Orange
+call NERDTreeHighlightFile('jade', 'Orange4', 'none', '#151515', 'Orange4')
+call NERDTreeHighlightFile('erb', 'Orange4', 'none', '#151515', 'Orange4')
+
+" HTML Red
+call NERDTreeHighlightFile('html', 'red', 'none', '#151515', 'red')
+
+" PHP Purple
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#151515', 'Magenta')
+
+" CSS Pink
+call NERDTreeHighlightFile('css', '#ff33cc', 'none', '#151515', '#ff33cc')
+call NERDTreeHighlightFile('scss', '#ff33cc', 'none', '#151515', '#ff33cc')
+call NERDTreeHighlightFile('sass', '#ff33cc', 'none', '#151515', '#ff33cc')
+call NERDTreeHighlightFile('less', '#ff33cc', 'none', '#151515', '#ff33cc')
+
+" JS Yellow
+call NERDTreeHighlightFile('js', 'Yellow', 'none', '#151515', 'Yellow')
+call NERDTreeHighlightFile('jsx', 'Yellow', 'none', '#151515', 'Yellow')
+call NERDTreeHighlightFile('es6', 'Yellow', 'none', '#151515', 'Yellow')
+
+" JSON / YAML 
+call NERDTreeHighlightFile('json', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
+
+" Dotfiles Green Block
+call NERDTreeHighlightFile('.', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
+
+" Directories
+call NERDTreeHighlightFile('dircolors', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
+
+
+
 " Git fugitive
 nnoremap <leader>gs :Gstatus<CR>
 " nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
@@ -218,6 +260,48 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " Make vim indent normal tags
 :let g:html_indent_inctags = "html,body,head,tbody"
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="tomorrow"
+
+" Custom Icons
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = "\ue781"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = "\ue749"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scss'] = "\ue74b"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['less'] = "\ue758"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = "\ue796"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['php'] = "\ue73d"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot'] = "\uf034"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf'] = "\uf034"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf'] = "\uf034"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = "\uf034"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = "\uf03e"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jpg'] = "\uf03e"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['png'] = "\uf03e"
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gif'] = "\uf03e"
+
+
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['package.json'] = "\ue71e"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = "\ue709"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gruntfile.js'] = "\ue74c"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gulpfile.js'] = "\ue763"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.babelrc'] = "\ue781"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.bowerrc'] = "\ue74d"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.babelrc'] = "\ue781"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['sass'] = "\ue74b"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['js'] = "\ue74e"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['node_modules'] = "\ue71e"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['css'] = "\ue749"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.git'] = "\ue702"
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.htaccess'] = "\uf013"
+
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
+let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 
 " Go to module
 nnoremap <leader>o :ImportJSGoTo<CR>
