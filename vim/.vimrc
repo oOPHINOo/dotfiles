@@ -35,7 +35,7 @@ Plugin 'trotzig/import-js'
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ryanoasis/vim-devicons'
-
+Plugin 'vimwiki'
 call vundle#end()
 filetype plugin indent on
 
@@ -158,49 +158,36 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeCaseSensitiveSort=1
 let NERDTreeIgnore=['\.DS_Store$', '\~$', '\.sw[poq]$']
+autocmd VimEnter * NERDTree | wincmd p
 
 " Set File Icons
-" set guifont=Meslo\ LG\ L\ Regular\ for\ Powerline\ 12
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\
+set guifont=Meslo\ LG\ L\ Regular\ for\ Powerline\ 12
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h11
+
 set encoding=utf-8
 let g:airline_powerline_fonts = 1
 
+" NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
-" Templating Orange
-call NERDTreeHighlightFile('jade', 'Orange4', 'none', '#151515', 'Orange4')
-call NERDTreeHighlightFile('erb', 'Orange4', 'none', '#151515', 'Orange4')
-
-" HTML Red
-call NERDTreeHighlightFile('html', 'red', 'none', '#151515', 'red')
-
-" PHP Purple
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#151515', 'Magenta')
-
-" CSS Pink
-call NERDTreeHighlightFile('css', '#ff33cc', 'none', '#151515', '#ff33cc')
-call NERDTreeHighlightFile('scss', '#ff33cc', 'none', '#151515', '#ff33cc')
-call NERDTreeHighlightFile('sass', '#ff33cc', 'none', '#151515', '#ff33cc')
-call NERDTreeHighlightFile('less', '#ff33cc', 'none', '#151515', '#ff33cc')
-
-" JS Yellow
-call NERDTreeHighlightFile('js', 'Yellow', 'none', '#151515', 'Yellow')
-call NERDTreeHighlightFile('jsx', 'Yellow', 'none', '#151515', 'Yellow')
-call NERDTreeHighlightFile('es6', 'Yellow', 'none', '#151515', 'Yellow')
-
-" JSON / YAML 
-call NERDTreeHighlightFile('json', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
-
-" Dotfiles Green Block
-call NERDTreeHighlightFile('.', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
-
-" Directories
-call NERDTreeHighlightFile('dircolors', '#ffffff', '#66cc66', '#cccccc', '#66cc66')
-
-
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('scss', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('sass', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " Git fugitive
 nnoremap <leader>gs :Gstatus<CR>
@@ -303,5 +290,6 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFolderExtensionPatternMatching = 1
 let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 
-" Go to module
-nnoremap <leader>o :ImportJSGoTo<CR>
+"VIMWiki Markdown
+"remap <leader>o :ImportJSGoTo<CR>
+let g:vimwiki_list = [{'path': '~/Dropbox/Documents/Markdown/VIMWiki/', 'syntax': 'markdown', 'ext': '.md'}]

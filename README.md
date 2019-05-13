@@ -1,2 +1,2 @@
 # dotfiles
-In the shadows these files lurk. Invisible to most. Carrying out their interests they way they best please.
+In the shadows these files lurk. Invisible to most. Carrying out their interests in the way they best please.
